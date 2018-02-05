@@ -31,7 +31,7 @@ public class TourDaoTest {
         Long id = tourDao.create(drz);
         Assert.assertNotNull(id);
 
-        List<Tour> list =tourDao.readAll();
+        List<Tour> list = tourDao.readAll();
         Assert.assertNotNull(list);
 
         long oldSize = list.size();

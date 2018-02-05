@@ -1,3 +1,7 @@
+/*
+ * Dao для работы с таблицей clients
+ */
+
 package dao.mysql;
 
 import java.sql.PreparedStatement;
@@ -14,11 +18,11 @@ public class MySqlClientDao extends AbstractDao<Client> implements ClientDao {
 
     @Override
     public String getSelectQuery() {
-        return "SELECT `id`, `surname`, `name`, `phone`, `size` FROM `clients`, `sales` where id_sale = sales_id_sale AND `id` = ?";
+        return "SELECT `id`, `surname`, `name`, `phone`, `size`, `trips` FROM `clients`, `sales` where id_sale = sales_id_sale AND `id` = ?";
     }
 
     public String getSelectName() {
-        return "SELECT `id`, `surname`, `name`, `phone`, `size` FROM `clients`, `sales` where id_sale = sales_id_sale AND `surname` = ? AND `name` = ?";
+        return "SELECT `id`, `surname`, `name`, `phone`, `size`, `trips` FROM `clients`, `sales` where id_sale = sales_id_sale AND `surname` = ? AND `name` = ?";
     }
 
     @Override
@@ -33,7 +37,7 @@ public class MySqlClientDao extends AbstractDao<Client> implements ClientDao {
 
     @Override
     public String getSelectAllQuery() {
-        return "SELECT `id`, `surname`, `name`, `phone`, `size` FROM `clients`, `sales` where id_sale = sales_id_sale ORDER BY `surname`, `name`, `id`";
+        return "SELECT `id`, `surname`, `name`, `phone`, `size`, `trips` FROM `clients`, `sales` where id_sale = sales_id_sale ORDER BY `surname`, `name`, `id`";
     }
 
     @Override
@@ -56,6 +60,7 @@ public class MySqlClientDao extends AbstractDao<Client> implements ClientDao {
             client.setSurname(resultSet.getString("surname"));
             client.setPhone(resultSet.getString("phone"));
             client.setSale(resultSet.getInt("size"));
+            client.setTrips(resultSet.getInt("trips"));
             return client;
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -64,7 +69,7 @@ public class MySqlClientDao extends AbstractDao<Client> implements ClientDao {
 
     @Override
     public void update(Client client, long key) throws DaoException {
-        String sql = "update `clients` set `name` = ?, `surname` = ?, `phone` = ? where `id` = ?";
+        String sql = "UPDATE `clients` SET `name` = ?, `surname` = ?, `phone` = ? WHERE `id` = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql);) {
             setEntity(statement, client);
             statement.setLong(4, key);
@@ -76,7 +81,7 @@ public class MySqlClientDao extends AbstractDao<Client> implements ClientDao {
 
     @Override
     public List<Client> readByName(String name, String surname) throws DaoException {
-        String sql = "SELECT `id`, `surname`, `name`, `phone`, `size` FROM `clients`, `sales` where id_sale = sales_id_sale AND `surname` = ? AND `name` = ?";
+        String sql = "SELECT `id`, `surname`, `name`, `phone`, `size`, `trips` FROM `clients`, `sales` where id_sale = sales_id_sale AND `surname` = ? AND `name` = ?";
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(sql);) {
             statement.setString(1, surname);
@@ -116,5 +121,4 @@ public class MySqlClientDao extends AbstractDao<Client> implements ClientDao {
             }
         }
     }
-
 }

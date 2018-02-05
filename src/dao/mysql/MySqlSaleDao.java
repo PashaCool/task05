@@ -1,3 +1,7 @@
+/*
+ * Sale Dao
+ */
+
 package dao.mysql;
 
 import java.sql.PreparedStatement;
@@ -7,28 +11,28 @@ import java.sql.SQLException;
 import entity.Sale;
 import exceptions.DaoException;
 
-public class MySqlSaleDao extends AbstractDao<Sale>{
-    
+public class MySqlSaleDao extends AbstractDao<Sale> {
+
     @Override
     public String getSelectQuery() {
         return "SELECT * FROM `sales` where `id_sale` = ?";
     }
-    
+
     @Override
     public String getDeleteQuery() {
         return "DELETE FROM `sales` WHERE `id_sale` = ?";
     }
-    
+
     @Override
     public String getInsertQuery() {
         return "insert into `sales` (`title`, `size`) values (?,?);";
     }
-    
+
     @Override
     public String getSelectAllQuery() {
-        return "SELECT * FROM `sales` ORDER BY `size` DESC";
+        return "SELECT * FROM `sales` ORDER BY `size` ASC";
     }
-    
+
     @Override
     protected void setEntity(PreparedStatement statement, Sale sale) throws DaoException {
         try {
@@ -38,7 +42,7 @@ public class MySqlSaleDao extends AbstractDao<Sale>{
             throw new DaoException(e);
         }
     }
-    
+
     @Override
     protected Sale parseResultSet(ResultSet resultSet) throws DaoException {
         Sale sale = new Sale();

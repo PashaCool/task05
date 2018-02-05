@@ -11,6 +11,8 @@ public interface ClientService {
 
     void delete(Long id) throws ServiceException;
 
+    public Client read(Long key) throws ServiceException;
+
     List<Client> readAllClient() throws ServiceException;
 
     List<Client> readClientByName(String name, String surname) throws ServiceException;

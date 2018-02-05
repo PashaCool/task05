@@ -67,6 +67,8 @@ public class MySqlTourDao extends AbstractDao<Tour> implements TourDao {
             statement.setBoolean(6, obj.isHotel());
             statement.setBoolean(7, obj.isVisa());
             statement.setString(8, obj.getTransBus());
+            // statement.setBoolean(9, obj.isSale());
+            // statement.setDouble(10, obj.getOffer());
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -85,6 +87,8 @@ public class MySqlTourDao extends AbstractDao<Tour> implements TourDao {
             trip.setHotel(resultSet.getBoolean("hotel"));
             trip.setVisa(resultSet.getBoolean("visa"));
             trip.setTransBus(resultSet.getString("transport"));
+            trip.setSale(resultSet.getBoolean("burning"));
+            trip.setOffer(resultSet.getDouble("size"));
             return trip;
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -93,10 +97,10 @@ public class MySqlTourDao extends AbstractDao<Tour> implements TourDao {
 
     @Override
     public void update(Tour obj, long key) throws DaoException {
-        String sql = "update `tours_list` set `city` = ?, `type` = ?, `days` = ?, `price` = ?, `eat` = ?, `hotel` = ?, `visa` = ?, `transport` = ? where `id` = ?";
+        String sql = "update `tours_list` set `city` = ?, `type` = ?, `days` = ?, `price` = ?, `eat` = ?, `hotel` = ?, `visa` = ?, `transport` = ?, `burning` = ?, `size` = ? where `id` = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql);) {
             setEntity(statement, obj);
-            statement.setLong(9, key);
+            statement.setLong(11, key);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e);

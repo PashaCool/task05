@@ -1,7 +1,8 @@
 package service;
 
 public class FactoryException extends Exception {
-    public FactoryException() {}
+    public FactoryException() {
+    }
 
     public FactoryException(String message, Throwable cause) {
         super(message, cause);

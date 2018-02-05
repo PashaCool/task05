@@ -1,15 +1,23 @@
+/*
+ * Класс для отображения и чтения из таблицы tours_list
+ */
+
 package entity;
 
-public class Tour extends Entity {
+import entity.tour.Order;
+
+public class Tour extends Entity implements Order {
 
     private String city;
-    private String type;
+    private String type;// тип поездки: tour, shopping, sanative
     private int days;
     private double price;
+    private double offer;// величина скдки, если включена опция "горящего предложения"
     private boolean eat;
     private boolean hotel;
     private boolean visa;
     private String transBus;
+    private boolean burning; // булевое значение. если true, значит тур со скидкой, сделать еще скидку нельзя
 
     public Tour() {
     }
@@ -28,7 +36,7 @@ public class Tour extends Entity {
         this.setEat(eat);
         this.setHotel(hotel);
         this.setVisa(visa);
-        setTransBus(tr);
+        transBus = tr;
     }
 
     public String getCity() {
@@ -53,6 +61,15 @@ public class Tour extends Entity {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public double getOffer() {
+        return offer;
+    }
+
+    public void setOffer(double offer) {
+        this.offer = offer;
     }
 
     public int getDays() {
@@ -95,10 +112,21 @@ public class Tour extends Entity {
         this.transBus = transBus;
     }
 
+    public boolean isSale() {
+        return burning;
+    }
+
+    public void setSale(boolean c) {
+        burning = c;
+    }
+
     @Override
     public String toString() {
+        String sl = "";
+        if (isSale())
+            sl = " " + getOffer() + "% sale!";
         return '\n' + "Tour id=" + getId() + ", city: " + getCity() + ", type: " + getType() + ", days: " + getDays()
-                + ", price: " + getPrice() + ", eat: " + isEat() + ", hotel: " + isHotel() + ", visa: " + isVisa()
+                + ", price: " + getPrice() + sl + ", eat: " + isEat() + ", hotel: " + isHotel() + ", visa: " + isVisa()
                 + ", transport: " + getTransBus();
     }
 }

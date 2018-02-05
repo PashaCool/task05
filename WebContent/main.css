@@ -1,0 +1,46 @@
+body {
+	font-family: 'Trebuchet MS', Helvetica, sans-serif;
+	height: 100%;
+	margin: 6;
+	text-align: center;
+	width: 100%;
+}
+
+header {
+	padding: 20px 0;
+}
+
+header .row, footer .row {
+	display: flex;
+	align-items: center;
+}
+
+header h1 {
+	font-family: Palatino, 'Palatino Linotype', serif;
+	color: rgb(218, 190, 206);
+	font-weight:;
+	margin: 0;
+}
+
+header nav {
+	display: flex;
+	justify-content: flex-end;
+}
+
+header p {
+	margin: 0;
+}
+
+footer {
+	font-size: 12px;
+	padding: 20px 0;
+}
+
+footer ul {
+	list-style: none;
+}
+
+footer li img {
+	width: 32px;
+	height: 32px;
+}

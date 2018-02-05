@@ -1,0 +1,20 @@
+CREATE TABLE `test` (
+`id` INT( 11 ) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`content` TEXT NOT NULL 
+) ENGINE = MYISAM;
+
+CREATE TABLE `log` (
+`id` INT( 11 ) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`msg` VARCHAR( 255 ) NOT NULL,
+`time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`row_id` INT( 11 ) NOT NULL 
+) ENGINE = MYISAM;
+
+DELIMITER |
+CREATE TRIGGER `update_testtripstripstrips` AFTER INSERT ON `passangers`
+FOR EACH ROW 
+BEGIN 
+   UPDATE `clients` Set journeys = journeys+1
+   WHERE clients.id = passangers.id_client;
+END;
+

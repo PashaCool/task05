@@ -1,18 +1,23 @@
 package service;
 
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 
 import dao.ClientDao;
 import dao.TourDao;
 import dao.mysql.MySqlSaleDao;
 
 public interface ServiceFactory extends AutoCloseable {
-    ClientService getUserService() throws FactoryException;
-    TourService getAccountService() throws FactoryException;
+    ClientService getClientService() throws FactoryException;
 
-    ClientDao getUserDao() throws FactoryException;
-    TourDao getAccountDao() throws FactoryException;
-    MySqlSaleDao getTransferDao() throws FactoryException;
+    TourService getTourService() throws FactoryException;
+
+    ClientDao getClientDao() throws FactoryException;
+
+    TourDao getTourDao() throws FactoryException;
+
+    SaleService getSaleService() throws FactoryException;
+
+    MySqlSaleDao getSaleDao() throws FactoryException;
 
     Connection getConnection() throws FactoryException;
 }

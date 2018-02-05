@@ -1,7 +1,11 @@
+/*
+ * Первоначально планировал хранить логины и пароли для наследуемых типов пользователей
+ */
+
 package entity;
 
-public abstract class User extends Entity {   
-    
+public abstract class User extends Entity {
+
     protected String name;
     protected String surname;
     protected String phone;
