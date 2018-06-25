@@ -1,0 +1,44 @@
+h2 {
+	font: italic normal 3em Baskerville, "Palatino Linotype", "Times New Roman", serif;
+	color: #46874D;
+	background: url(../images/underline.png) no-repeat 0px 88%;
+	padding-left: 2px;
+}
+
+#city, #type, #price, #days, #food, #hotel, #visa, #transport {
+  width: 15%;
+}
+
+.inventory {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.inventory td, .inventory th {
+  font-size: 1.1em;
+  border: 1px solid #DDB575;
+  padding: 3px 7px 2px 7px;
+}
+
+.inventory th {
+  text-transform:uppercase;
+  text-align: left;
+  padding-top: 5px;
+  padding-bottom: 4px;
+  background: rgb(229,76,16);
+  background: linear-gradient(to bottom, rgb(229,76,16), rgb(173,54,8));
+  color: white;
+}
+.inventory tr:nth-of-type(even){
+  background-color: rgba(255,255,255,.1);
+}
+.inventory tr:nth-of-type(odd){
+  background-color: rgba(229,76,16,.1);
+}
+
+body{
+	background-color: rgba(229,76,16,.1);
+}
+}

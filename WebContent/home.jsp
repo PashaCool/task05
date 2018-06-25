@@ -3,7 +3,7 @@
 <%@ page errorPage="error.jsp"%>
 <%@ include file="login.jsp"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
 <title>Start page</title>
@@ -13,42 +13,48 @@
 	crossorigin="anonymous">
 <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700'
 	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="main.css">
+<link href="css/main.css" rel="stylesheet" >
+<link rel="stylesheet" href="css/tablestl.css">
 </head>
 <body>
-<h5> Кнопки edit and delete ничего не делают</h5>
-	<header class="container">
-	<div class="row">
-		<h1 class="col-sm-8">Турфирма</h1>
-		<nav class="col-sm-12">
-		<p>
-		<form action="ClientList" method="get">
-			<input type="submit" name="clients" value="Clients" />
-		</form>
-		</p>
-		<p>
-		<form action="SaleList" method="get">
-			<input type="submit" name="sales" value="Sales" />
-		</form>
-		</p>
-		<p>
-		<form action="Contacts" method="get">
-			<input type="submit" name="contacts" value="Contscts" />
-		</form>
-		</p>
+	<header>
+	<div class="container">
+		<h1>Турфирма</h1>
+		<nav>
+			<form action="ClientList" method="get">
+				<input type="submit" name="clients" value="Clients" />
+			</form>
+			<form action="SaleList" method="get">
+				<input type="submit" name="sales" value="Sales" />
+			</form>
+			<form action="Contacts" method="get">
+				<input type="submit" name="contacts" value="Contscts" />
+			</form>
 		</nav>
 	</div>
-	<table border="1">
-		<caption>Список туров</caption>
+	</header>
+	<h2>Список туров</h2>
+	<table class="inventory" border="1">
+		<caption></caption>
+		<colgroup>
+			<col id="city">
+			<col id="type">
+			<col id="price">
+			<col id="days">
+			<col id="food">
+			<col id="hotel">
+			<col id="visa">
+			<col id="transport">
+		</colgroup> 
 		<tr>
-			<th>Город</th>
-			<th>Тип поездки</th>
-			<th>Цена</th>
-			<th>Дни</th>
-			<th>Еда</th>
-			<th>Отель</th>
-			<th>Виза</th>
-			<th>Транспорт</th>
+			<th scope="col">Город</th>
+			<th scope="col">Тип поездки</th>
+			<th scope="col">Цена</th>
+			<th scope="col">Дни</th>
+			<th scope="col">Еда</th>
+			<th scope="col">Отель</th>
+			<th scope="col">Виза</th>
+			<th scope="col">Транспорт</th>
 		</tr>
 		<c:forEach var="tour" items="${t}">
 			<tr>
@@ -60,8 +66,8 @@
 				<td>${tour.hotel}</td>
 				<td>${tour.visa}</td>
 				<td>${tour.transBus}</td>
-				<td><input type="submit" name="enter" value="Edit" /></td>
-				<td><input type="submit" name="enter" value="Delete" /></td>
+				<td><img src="image/edit.png" width="16" height="16" alt="edit"></td>
+				<td><img src="image/del.png" width="16" height="16" alt="del"></td>
 			</tr>
 		</c:forEach>
 	</table>
